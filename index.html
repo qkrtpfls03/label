@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <!-- 모바일에서 화면 폭에 맞게 보이도록 설정 (광고를 보고 들어오는 사람은 대부분 폰) -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>20대 여자 자취생의 정리템 | 미니 라벨프린터</title>
+
+  <!-- 한글 폰트: Pretendard (무료 웹폰트) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+
+  <!-- =========================================================
+       [메타 픽셀] 담당 2에게 픽셀 ID를 받으면 아래 YOUR_PIXEL_ID 두 곳을 바꾸기
+       - 페이지에 들어오면 'PageView'(방문)가 자동으로 기록됨
+       - 메타 이벤트 관리자에서 받은 기본 코드와 같은 내용임
+       ========================================================= -->
+  <script>
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+    n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+    document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', 'YOUR_PIXEL_ID');   // ← 여기 1
+    fbq('track', 'PageView');        // 방문 1회 기록
+  </script>
+  <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=YOUR_PIXEL_ID&ev=PageView&noscript=1"/></noscript>  <!-- ← 여기 2 -->
+
+  <style>
+    /* ---------- 색상 정의 (여기만 바꾸면 전체 색이 바뀜) ---------- */
+    :root {
+      --pink: #E98AA3;        /* 포인트 색 (버튼, 강조) */
+      --pink-soft: #FBE9EE;   /* 연한 핑크 배경 */
+      --cream: #FAF7F2;       /* 페이지 배경 */
+      --ink: #1F1F1F;         /* 본문 글씨 */
+      --gray: #6B6B6B;        /* 보조 글씨 */
+      --line: #EAE4DC;        /* 구분선 */
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Pretendard', -apple-system, sans-serif;
+      background: var(--cream);
+      color: var(--ink);
+      line-height: 1.6;
+      padding-bottom: 88px;   /* 하단 고정 버튼에 내용이 가리지 않게 */
+    }
+    /* 내용 폭을 폰 화면 크기로 제한 (PC에서 열어도 폰처럼 보이게) */
+    .wrap { max-width: 480px; margin: 0 auto; background: #fff; }
+    section { padding: 40px 24px; }
+
+    /* ---------- ① 히어로 ---------- */
+    .hero { background: var(--pink-soft); text-align: center; padding-top: 48px; }
+    .tag { display: inline-block; font-size: 13px; color: var(--pink); font-weight: 600;
+           border: 1px solid var(--pink); border-radius: 999px; padding: 4px 12px; }
+    .hero h1 { font-size: 30px; font-weight: 800; line-height: 1.3; margin: 16px 0 12px; }
+    .hero p { color: var(--gray); font-size: 16px; }
+
+    /* 이미지 공통: 이미지 파일이 없으면 회색 상자로 자리만 보여줌 */
+    .img { width: 100%; border-radius: 16px; display: block; background: #eee; }
+    .hero .img { margin-top: 28px; aspect-ratio: 1 / 1; object-fit: cover; }
+
+    /* ---------- ② 사회적 증거 (쿠팡 실제 수치) ---------- */
+    .proof { display: flex; justify-content: center; gap: 24px; padding: 24px;
+             border-bottom: 1px solid var(--line); text-align: center; }
+    .proof b { display: block; font-size: 20px; }
+    .proof span { font-size: 12px; color: var(--gray); }
+
+    /* ---------- 섹션 제목 ---------- */
+    h2 { font-size: 22px; font-weight: 700; line-height: 1.4; margin-bottom: 8px; }
+    .sub { color: var(--gray); font-size: 15px; margin-bottom: 24px; }
+
+    /* ---------- ③ 활용 장면 ---------- */
+    .scene .img { aspect-ratio: 4 / 5; object-fit: cover; margin-bottom: 12px; }
+    .caption { font-size: 14px; color: var(--gray); text-align: center; margin-bottom: 20px; }
+
+    /* ---------- ④ 장점 3개 ---------- */
+    .features { background: var(--cream); }
+    .feature { display: flex; gap: 16px; align-items: center; background: #fff;
+               border-radius: 14px; padding: 18px; margin-bottom: 12px; }
+    .feature .icon { font-size: 28px; width: 48px; height: 48px; flex-shrink: 0;
+                     display: grid; place-items: center; background: var(--pink-soft); border-radius: 12px; }
+    .feature b { display: block; font-size: 16px; }
+    .feature span { font-size: 14px; color: var(--gray); }
+
+    /* ---------- ⑤ 사용 방법 3단계 ---------- */
+    .steps { counter-reset: step; }
+    .step { display: flex; gap: 14px; align-items: flex-start; margin-bottom: 18px; }
+    .step::before { counter-increment: step; content: counter(step);
+                    width: 32px; height: 32px; flex-shrink: 0; border-radius: 50%;
+                    background: var(--pink); color: #fff; font-weight: 700;
+                    display: grid; place-items: center; }
+    .step b { display: block; }
+    .step span { font-size: 14px; color: var(--gray); }
+
+    /* ---------- ⑥ 가격 ---------- */
+    .price { text-align: center; background: var(--pink-soft); }
+    .price .old { color: var(--gray); text-decoration: line-through; font-size: 15px; }
+    .price .now { font-size: 34px; font-weight: 800; }
+    .price .now em { font-style: normal; color: var(--pink); font-size: 22px; margin-right: 6px; }
+    .price .note { font-size: 12px; color: var(--gray); margin-top: 8px; }
+
+    /* ---------- 구매하기 버튼 (화면 아래 고정) ---------- */
+    .cta-bar { position: fixed; left: 0; right: 0; bottom: 0; padding: 12px 16px 20px;
+               background: linear-gradient(transparent, #fff 30%); }
+    .cta { display: block; max-width: 448px; margin: 0 auto; padding: 18px;
+           background: var(--pink); color: #fff; font-size: 18px; font-weight: 700;
+           text-align: center; border: none; border-radius: 14px; cursor: pointer; width: 100%; }
+    .cta:active { transform: scale(0.98); }
+
+    /* ---------- 하단 안내 ---------- */
+    footer { padding: 24px; font-size: 11px; color: var(--gray); text-align: center; line-height: 1.7; }
+  </style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- ① 히어로: 릴스 광고와 같은 헤드라인으로 시작해야 클릭한 사람이 이탈하지 않음 -->
+  <section class="hero">
+    <span class="tag">미니 라벨프린터</span>
+    <h1>20대 여자 자취생의<br>정리템</h1>
+    <p>충전기, 문구, 헤어핀까지<br>라벨 한 장이면 한눈에 정리 끝.</p>
+    <!-- 이미지 1: hero.png (릴스 광고 이미지와 같은 분위기: 라벨 붙은 서랍 + 핑크 라벨프린터, 정사각형 권장) -->
+    <img class="img" src="hero.png" alt="라벨이 붙은 서랍과 핑크색 미니 라벨프린터">
+  </section>
+
+  <!-- ② 사회적 증거: 쿠팡 상품 페이지의 '실제' 수치만 사용 (지어낸 숫자 금지) -->
+  <div class="proof">
+    <div><b>8,309개</b><span>쿠팡 상품평</span></div>
+    <div><b>3,000명+</b><span>한 달간 구매</span></div>
+    <div><b>잉크 0원</b><span>감열식</span></div>
+  </div>
+
+  <!-- ③ 활용 장면: '정리된 내 방'을 상상하게 만드는 영역 -->
+  <section class="scene">
+    <h2>이름만 붙였을 뿐인데,<br>내 방이 달라져요</h2>
+    <p class="sub">좁은 자취방도 오늘 바로 할 수 있는 정리</p>
+    <!-- 이미지 2: scene1.png (라벨 붙은 서랍 정리함 클로즈업, 4:5 세로 권장) -->
+    <img class="img" src="scene1.png" alt="충전기, 문구, 헤어핀 라벨이 붙은 서랍 정리함">
+    <p class="caption">서랍마다 이름을 붙이면, 찾는 시간 0초</p>
+    <!-- 이미지 3: scene2.png (라벨 붙은 화장품·소품 정리 또는 책상 위 정리, 4:5 세로 권장) -->
+    <img class="img" src="scene2.png" alt="정리된 책상과 어질러진 방이 나란히 보이는 비교 장면">
+    <p class="caption">라벨 붙이기 전과 후, 같은 방이에요</p>
+  </section>
+
+  <!-- ④ 장점 3개 -->
+  <section class="features">
+    <h2>작은데, 할 건 다 해요</h2>
+    <div class="feature">
+      <div class="icon">💧</div>
+      <div><b>잉크 필요 없음</b><span>열로 인쇄하는 감열식이라 소모품은 라벨지뿐</span></div>
+    </div>
+    <div class="feature">
+      <div class="icon">📱</div>
+      <div><b>폰으로 바로 편집</b><span>앱에서 글씨·아이콘 고르고 바로 출력</span></div>
+    </div>
+    <div class="feature">
+      <div class="icon">✋</div>
+      <div><b>손바닥 크기</b><span>좁은 자취방 서랍에도 쏙</span></div>
+    </div>
+  </section>
+
+  <!-- ⑤ 사용 방법: '어렵지 않다'는 걸 보여줘서 구매 망설임을 줄임 -->
+  <section class="steps">
+    <h2>3단계면 끝</h2>
+    <div class="step"><div><b>문구 정하기</b><span>"충전기", "헤어핀" 처럼</span></div></div>
+    <div class="step"><div><b>폰으로 출력</b><span>블루투스로 연결해서 바로 인쇄</span></div></div>
+    <div class="step"><div><b>제자리에 붙이기</b><span>정리하고 싶은 곳 어디든</span></div></div>
+  </section>
+
+  <!-- ⑥ 가격: 쿠팡 실제 가격 (가격이 바뀌면 여기 숫자만 수정) -->
+  <section class="price">
+    <p class="old">21,900원</p>
+    <p class="now"><em>9%</em>19,900원</p>
+    <p class="note">2026.10.31 쿠팡 판매가 기준 · 가격은 변동될 수 있어요</p>
+  </section>
+
+  <!-- 하단 안내: 공식몰이 아니라는 것을 밝힘 -->
+  <footer>
+    본 페이지는 가천대학교 수업 과제로 제작된 상품 소개 페이지입니다.<br>
+    상품 판매 및 배송은 쿠팡에서 이루어집니다.<br>
+    상품평·구매 수치 출처: 쿠팡 상품 페이지 (2026.10.31 기준)<br>
+    일부 이미지는 사용 예시를 보여주기 위한 연출 이미지입니다.
+  </footer>
+</div>
+
+<!-- 구매하기 버튼: 화면 아래에 항상 떠 있음 -->
+<div class="cta-bar">
+  <button class="cta" onclick="goBuy()">구매하기</button>
+</div>
+
+<script>
+  // 쿠팡 상품 링크 (쿠팡 파트너스를 쓰면 이 주소만 파트너스 링크로 교체)
+  const COUPANG_URL = 'https://www.coupang.com/vp/products/8113159630?itemId=22992058726&vendorItemId=95681947785';
+
+  function goBuy() {
+    // 1) 메타 픽셀에 '전환' 기록 → 이 횟수가 CVR 계산의 분자가 됨
+    //    (픽셀이 아직 없거나 차단돼도 오류 없이 넘어가도록 확인)
+    if (typeof fbq === 'function') {
+      fbq('track', 'InitiateCheckout');
+    }
+    // 2) 기록이 메타로 전송될 시간을 0.3초 준 뒤 쿠팡으로 이동
+    setTimeout(function () {
+      window.location.href = COUPANG_URL;
+    }, 300);
+  }
+</script>
+</body>
+</html>
